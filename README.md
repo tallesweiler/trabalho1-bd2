@@ -31,9 +31,11 @@ Execute o comando abaixo na raiz do projeto para iniciar o DynamoDB e popular as
 
 ```bash
 docker-compose up --build
+```
 
 ### 3. Rodando o Código
 Execute o comando abaixo na raiz do projeto para iniciar a função de SQL Parser para testar as funcionalidades:
 
 ```bash
 python app/main.py
+```
