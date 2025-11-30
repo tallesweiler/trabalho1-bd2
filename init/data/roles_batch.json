@@ -1,0 +1,46 @@
+{
+  "roles": [
+    {
+      "PutRequest": {
+        "Item": {
+          "role_name": { "S": "admin" },
+          "permissions": {
+            "L": [
+              { "S": "READ" },
+              { "S": "INSERT" },
+              { "S": "UPDATE" },
+              { "S": "DELETE" },
+              { "S": "MANAGE_USERS" }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "role_name": { "S": "writer" },
+          "permissions": {
+            "L": [
+              { "S": "READ" },
+              { "S": "INSERT" },
+              { "S": "UPDATE" }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "role_name": { "S": "reader" },
+          "permissions": {
+            "L": [
+              { "S": "READ" }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

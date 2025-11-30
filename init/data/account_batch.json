@@ -1,0 +1,13 @@
+{
+  "account": [
+    {"PutRequest": {"Item": {"account_number":{"S":"A-101"},"branch_name":{"S":"Downtown"},"balance":{"N":"500"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-102"},"branch_name":{"S":"Perryridge"},"balance":{"N":"400"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-201"},"branch_name":{"S":"Perryridge"},"balance":{"N":"900"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-215"},"branch_name":{"S":"Mianus"},"balance":{"N":"700"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-217"},"branch_name":{"S":"Brighton"},"balance":{"N":"750"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-222"},"branch_name":{"S":"Redwood"},"balance":{"N":"700"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-305"},"branch_name":{"S":"Round Hill"},"balance":{"N":"350"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-333"},"branch_name":{"S":"Central"},"balance":{"N":"850"}}}},
+    {"PutRequest": {"Item": {"account_number":{"S":"A-444"},"branch_name":{"S":"North Town"},"balance":{"N":"625"}}}}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "depositor": [
+    {"PutRequest": {"Item": {"customer_name":{"S":"Hayes"},"account_number":{"S":"A-101"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Johnson"},"account_number":{"S":"A-101"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Hayes"},"account_number":{"S":"A-102"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Johnson"},"account_number":{"S":"A-201"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"account_number":{"S":"A-215"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Jones"},"account_number":{"S":"A-217"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Lindsay"},"account_number":{"S":"A-222"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Turner"},"account_number":{"S":"A-305"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Majeris"},"account_number":{"S":"A-333"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"account_number":{"S":"A-444"}}}}
+  ]
+}

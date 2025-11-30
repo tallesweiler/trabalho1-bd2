@@ -1,0 +1,19 @@
+{
+  "customer": [
+    {"PutRequest": {"Item": {"customer_name":{"S":"Adams"},"customer_street":{"S":"Spring"},"customer_city":{"S":"Pittsfield"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Brooks"},"customer_street":{"S":"Senator"},"customer_city":{"S":"Brooklyn"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Curry"},"customer_street":{"S":"North"},"customer_city":{"S":"Rye"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Glenn"},"customer_street":{"S":"Sand Hill"},"customer_city":{"S":"Woodside"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Green"},"customer_street":{"S":"Walnut"},"customer_city":{"S":"Stamford"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Hayes"},"customer_street":{"S":"Main"},"customer_city":{"S":"Harrison"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Jackson"},"customer_street":{"S":"University"},"customer_city":{"S":"Salt Lake"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Johnson"},"customer_street":{"S":"Alma"},"customer_city":{"S":"Palo Alto"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Jones"},"customer_street":{"S":"Main"},"customer_city":{"S":"Harrison"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Lindsay"},"customer_street":{"S":"Park"},"customer_city":{"S":"Pittsfield"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Majeris"},"customer_street":{"S":"First"},"customer_city":{"S":"Rye"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"McBride"},"customer_street":{"S":"Safety"},"customer_city":{"S":"Rye"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"customer_street":{"S":"Main"},"customer_city":{"S":"Rye"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Turner"},"customer_street":{"S":"Putnam"},"customer_city":{"S":"Stamford"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Williams"},"customer_street":{"S":"Nassau"},"customer_city":{"S":"Princeton"}}}}
+  ]
+}

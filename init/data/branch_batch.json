@@ -1,0 +1,13 @@
+{
+  "branch": [
+    {"PutRequest": {"Item": {"branch_name": {"S": "Brighton"}, "branch_city": {"S": "Brooklyn"}, "assets": {"N": "7000000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Central"}, "branch_city": {"S": "Rye"}, "assets": {"N": "400280"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Downtown"}, "branch_city": {"S": "Brooklyn"}, "assets": {"N": "900000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Mianus"}, "branch_city": {"S": "Horseneck"}, "assets": {"N": "400200"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "North Town"}, "branch_city": {"S": "Rye"}, "assets": {"N": "3700000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Perryridge"}, "branch_city": {"S": "Horseneck"}, "assets": {"N": "1700000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Pownal"}, "branch_city": {"S": "Bennington"}, "assets": {"N": "400000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Redwood"}, "branch_city": {"S": "Palo Alto"}, "assets": {"N": "2100000"}}}},
+    {"PutRequest": {"Item": {"branch_name": {"S": "Round Hill"}, "branch_city": {"S": "Horseneck"}, "assets": {"N": "8000000"}}}}
+  ]
+}

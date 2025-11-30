@@ -1,0 +1,86 @@
+[
+  {
+    "name": "branch",
+    "attributeDefinitions": [
+      { "AttributeName": "branch_name", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "branch_name", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "customer",
+    "attributeDefinitions": [
+      { "AttributeName": "customer_name", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "customer_name", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "account",
+    "attributeDefinitions": [
+      { "AttributeName": "account_number", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "account_number", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "loan",
+    "attributeDefinitions": [
+      { "AttributeName": "loan_number", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "loan_number", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "borrower",
+    "attributeDefinitions": [
+      { "AttributeName": "customer_name", "AttributeType": "S" },
+      { "AttributeName": "loan_number", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "customer_name", "KeyType": "HASH" },
+      { "AttributeName": "loan_number", "KeyType": "RANGE" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "depositor",
+    "attributeDefinitions": [
+      { "AttributeName": "customer_name", "AttributeType": "S" },
+      { "AttributeName": "account_number", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "customer_name", "KeyType": "HASH" },
+      { "AttributeName": "account_number", "KeyType": "RANGE" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "roles",
+    "attributeDefinitions": [
+      { "AttributeName": "role_name", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "role_name", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  },
+  {
+    "name": "users",
+    "attributeDefinitions": [
+      { "AttributeName": "username", "AttributeType": "S" }
+    ],
+    "keySchema": [
+      { "AttributeName": "username", "KeyType": "HASH" }
+    ],
+    "billingMode": "PAY_PER_REQUEST"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "loan": [
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-11"},"branch_name":{"S":"Round Hill"},"amount":{"N":"900"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-14"},"branch_name":{"S":"Downtown"},"amount":{"N":"1500"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-15"},"branch_name":{"S":"Perryridge"},"amount":{"N":"1500"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-16"},"branch_name":{"S":"Perryridge"},"amount":{"N":"1300"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-17"},"branch_name":{"S":"Downtown"},"amount":{"N":"1000"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-20"},"branch_name":{"S":"North Town"},"amount":{"N":"7500"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-21"},"branch_name":{"S":"Central"},"amount":{"N":"570"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-23"},"branch_name":{"S":"Redwood"},"amount":{"N":"2000"}}}},
+    {"PutRequest": {"Item": {"loan_number":{"S":"L-93"},"branch_name":{"S":"Mianus"},"amount":{"N":"500"}}}}
+  ]
+}

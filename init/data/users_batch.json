@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "PutRequest": {
+        "Item": {
+          "username": { "S": "admin_user" },
+          "password": { "S": "123456" },
+          "role": { "S": "admin" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "username": { "S": "writer_user" },
+          "password": { "S": "123456" },
+          "role": { "S": "writer" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "username": { "S": "reader_user" },
+          "password": { "S": "123456" },
+          "role": { "S": "reader" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "username": { "S": "comum_user" },
+          "password": { "S": "123456" }
+        }
+      }
+    }
+  ]
+}

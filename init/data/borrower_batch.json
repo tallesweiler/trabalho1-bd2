@@ -1,0 +1,14 @@
+{
+  "borrower": [
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"loan_number":{"S":"L-11"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Jackson"},"loan_number":{"S":"L-14"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Hayes"},"loan_number":{"S":"L-15"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Adams"},"loan_number":{"S":"L-16"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Jones"},"loan_number":{"S":"L-17"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Williams"},"loan_number":{"S":"L-17"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"McBride"},"loan_number":{"S":"L-20"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"loan_number":{"S":"L-21"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"loan_number":{"S":"L-23"}}}},
+    {"PutRequest": {"Item": {"customer_name":{"S":"Curry"},"loan_number":{"S":"L-93"}}}}
+  ]
+}
