@@ -22,19 +22,14 @@ FROM amazon/dynamodb-local:latest
 
 USER root
 
-# Instalação de dependências
 RUN yum install -y unzip jq
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 RUN unzip awscliv2.zip
 RUN ./aws/install
 
-# Copia scripts
 COPY init/ /init/
 RUN chmod +x /init/init.sh
 
-# --- ADIÇÃO IMPOTANTE ---
-# Cria o diretório de dados explicitamente e ajusta permissões
 RUN mkdir -p /home/dynamodblocal/data && chmod 777 /home/dynamodblocal/data
 
-# Define explicitamente o diretório de trabalho para garantir que o .jar seja encontrado
 WORKDIR /home/dynamodblocal
