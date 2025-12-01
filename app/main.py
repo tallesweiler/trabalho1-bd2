@@ -5,9 +5,7 @@ import re
 from botocore.exceptions import ClientError
 from boto3.dynamodb.conditions import Attr
 
-# ==========================================
-# 1. CONFIGURAÇÃO
-# ==========================================
+# config inicial
 dynamodb = boto3.resource(
     'dynamodb',
     endpoint_url='http://localhost:8000',
@@ -16,9 +14,7 @@ dynamodb = boto3.resource(
     aws_secret_access_key='local'
 )
 
-# ==========================================
-# 2. AUTENTICAÇÃO
-# ==========================================
+# autenticaçao
 def authenticate():
     print("\n=== SQL DYNAMODB FINAL (SELECT, INSERT, UPDATE, DELETE) ===")
     username = input("Login: ").strip()
@@ -45,9 +41,7 @@ def authenticate():
     print(f"✅ Usuário: {username} | Role: {role_name}")
     return {'username': username, 'role': role_name, 'permissions': permissions}
 
-# ==========================================
-# 3. HELPER: IMPRESSÃO
-# ==========================================
+# imprime itens
 def print_items(items):
     if not items:
         print("0 rows returned.")
@@ -78,16 +72,13 @@ def print_items(items):
     print(separator)
     print(f"Total: {len(items)} rows.\n")
 
-# ==========================================
-# 4. PARSERS E EXECUÇÃO
-# ==========================================
 
+# parse
 def execute_select(session, command):
     if 'READ' not in session['permissions']:
         print(f"🚫 ERRO: Role '{session['role']}' sem permissão READ.")
         return
 
-    # Regex para pegar: SELECT * FROM <tabela> [WHERE <condicao>]
     match = re.search(r"SELECT\s+\*\s+FROM\s+(\w+)(\s+WHERE\s+(.*))?", command, re.IGNORECASE)
     
     if match:
@@ -97,39 +88,29 @@ def execute_select(session, command):
         items = []
 
         try:
-            # CASO 1: TEM WHERE (Ex: WHERE role = 'admin')
             if where_clause:
-                # Extrai chave='valor'
                 cond = re.search(r"(\w+)\s*=\s*'([^']*)'", where_clause)
                 if cond:
                     key, val = cond.group(1), cond.group(2)
-                    
+           
                     try:
-                        # TENTATIVA 1: Busca otimizada por Chave Primária (GetItem)
                         resp = table.get_item(Key={key: val})
                         if 'Item' in resp:
                             items = [resp['Item']]
                         else:
-                            # Se não achou por chave, pode ser que a chave exista mas o item não, 
-                            # OU que estamos buscando por uma coluna que não é chave.
-                            # Se não deu erro, é porque era chave mesmo e não achou nada.
                             items = []
 
                     except ClientError as e:
-                        # TENTATIVA 2: Se deu erro de validação, é porque 'key' NÃO É Chave Primária.
-                        # Então fazemos um SCAN (busca na tabela toda filtrando pelo atributo)
                         if e.response['Error']['Code'] == 'ValidationException':
                             print(f"ℹ️ Buscando por atributo não-chave '{key}' (modo SCAN)...")
-                            # Usa o Attr para filtrar. Ex: Attr('role').eq('admin')
                             resp = table.scan(FilterExpression=Attr(key).eq(val))
                             items = resp.get('Items', [])
                         else:
-                            raise e # Se for outro erro (ex: tabela não existe), estoura pra cima
+                            raise e
                 else:
                     print("⚠️ WHERE complexo não suportado. Use: WHERE chave='valor'")
                     return
             
-            # CASO 2: NÃO TEM WHERE (Select *)
             else:
                 resp = table.scan()
                 items = resp.get('Items', [])
@@ -161,7 +142,6 @@ def execute_insert(session, command):
                 k = k.strip()
                 v = v.strip()
                 
-                # Tratamento de aspas e números
                 if (v.startswith("'") and v.endswith("'")) or (v.startswith('"') and v.endswith('"')):
                     v = v[1:-1]
                 elif v.isdigit():
@@ -178,13 +158,10 @@ def execute_insert(session, command):
         print("❌ Sintaxe inválida.")
 
 def execute_update(session, command):
-    # UPDATE <tabela> SET k1=v1, k2=v2 WHERE pk=valor
     if 'UPDATE' not in session['permissions']:
         print(f"🚫 ERRO: Role '{session['role']}' sem permissão UPDATE.")
         return
 
-    # Regex para pegar: Tabela(1), Lista de Sets(2), Chave(3), Valor(4)
-    # Ex: UPDATE users SET role='admin', vip=1 WHERE username='teste'
     regex = r"UPDATE\s+(\w+)\s+SET\s+(.+)\s+WHERE\s+(\w+)\s*=\s*'([^']*)'"
     match = re.search(regex, command, re.IGNORECASE)
 
@@ -196,7 +173,6 @@ def execute_update(session, command):
         
         table = dynamodb.Table(table_name)
         
-        # Preparando UpdateExpression do DynamoDB
         update_parts = []
         expr_names = {}
         expr_values = {}
@@ -210,13 +186,11 @@ def execute_update(session, command):
                 k = k.strip()
                 v = v.strip()
 
-                # Tratamento de tipos
                 if (v.startswith("'") and v.endswith("'")) or (v.startswith('"') and v.endswith('"')):
                     v = v[1:-1]
                 elif v.isdigit():
                     v = int(v)
                 
-                # Criamos aliases #attr1, :val1 para evitar conflito com palavras reservadas (ex: "role", "name")
                 attr_alias = f"#attr{i}"
                 val_alias = f":val{i}"
                 
@@ -226,8 +200,6 @@ def execute_update(session, command):
 
             update_expression = "SET " + ", ".join(update_parts)
             
-            # Executa o Update
-            # ConditionExpression garante que estamos ATUALIZANDO algo que existe, e não criando novo (Upsert)
             table.update_item(
                 Key={pk_key: pk_val},
                 UpdateExpression=update_expression,
@@ -264,9 +236,7 @@ def execute_delete(session, command):
     else:
         print("❌ Sintaxe inválida.")
 
-# ==========================================
-# 5. LOOP PRINCIPAL
-# ==========================================
+# main
 def main_loop():
     session = authenticate()
     if not session: return
