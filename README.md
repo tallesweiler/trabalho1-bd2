@@ -34,8 +34,9 @@ docker-compose up --build
 ```
 
 ### 3. Rodando o Código
-Execute o comando abaixo na raiz do projeto para iniciar a função de SQL Parser para testar as funcionalidades:
+Execute o comando abaixo na raiz do projeto para baixar as dependências e iniciar a função de SQL Parser para testar as funcionalidades:
 
 ```bash
+pip install -r requirements.txt
 python app/main.py
 ```
