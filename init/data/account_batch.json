@@ -11,3 +11,4 @@
     {"PutRequest": {"Item": {"account_number":{"S":"A-444"},"branch_name":{"S":"North Town"},"balance":{"N":"625"}}}}
   ]
 }
+

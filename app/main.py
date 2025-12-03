@@ -72,7 +72,6 @@ def print_items(items):
     print(separator)
     print(f"Total: {len(items)} rows.\n")
 
-
 # parse
 def execute_select(session, command):
     if 'READ' not in session['permissions']:

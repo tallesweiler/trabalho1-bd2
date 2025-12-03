@@ -17,3 +17,4 @@
     {"PutRequest": {"Item": {"customer_name":{"S":"Williams"},"customer_street":{"S":"Nassau"},"customer_city":{"S":"Princeton"}}}}
   ]
 }
+

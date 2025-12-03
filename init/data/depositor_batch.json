@@ -12,3 +12,4 @@
     {"PutRequest": {"Item": {"customer_name":{"S":"Smith"},"account_number":{"S":"A-444"}}}}
   ]
 }
+

@@ -11,3 +11,4 @@
     {"PutRequest": {"Item": {"loan_number":{"S":"L-93"},"branch_name":{"S":"Mianus"},"amount":{"N":"500"}}}}
   ]
 }
+

@@ -12,3 +12,4 @@
     {"PutRequest": {"Item": {"customer_name":{"S":"Curry"},"loan_number":{"S":"L-93"}}}}
   ]
 }
+
