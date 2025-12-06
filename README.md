@@ -1,6 +1,3 @@
-Aqui está o arquivo `README.md` completo, contendo todas as seções (desde a introdução até os testes) em um único bloco de texto para você copiar.
-
-````markdown
 # Implementação de Autenticação e Autorização (RBAC) para DynamoDB Local
 
 Este projeto implementa uma solução de **Middleware de Segurança** para o DynamoDB Local.
@@ -37,7 +34,7 @@ Em ambientes de produção na AWS, o controle de acesso é gerenciado pelo IAM. 
 │   ├── Dockerfile       # Container temporário com AWS CLI
 │   └── data/            # Arquivos JSON com dados de seed (users, roles)
 └── dbdata/              # Volume persistente do banco (gerado automaticamente)
-````
+```
 
 ## 🚀 Como Executar
 
@@ -158,5 +155,4 @@ Para validar a robustez e a segurança da solução, execute os seguintes cenár
 
 *Projeto desenvolvido para a disciplina de Bancos de Dados 2.*
 
-```
 ```
