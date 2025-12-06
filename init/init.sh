@@ -1,15 +1,21 @@
 #!/bin/bash
 
-ENDPOINT="http://dynamodb-local:8000"
+# Pega a variável do docker-compose ou usa padrão
+ENDPOINT="${DYNAMO_ENDPOINT:-http://dynamodb-local:8000}"
 REGION="us-west-2"
-DATA_DIR="/init/data"
+DATA_DIR="/data"
 TABLES_FILE="$DATA_DIR/tables.json"
 
 echo "⏳ Aguardando DynamoDB em $ENDPOINT..."
+# Loop simples de verificação de conexão
 until aws dynamodb list-tables --endpoint-url $ENDPOINT --region $REGION --no-cli-pager > /dev/null 2>&1; do
+  echo "zzz..."
   sleep 2
 done
 echo "✅ DynamoDB online!"
+
+# (O resto do seu script de criação de tabelas e carga de dados permanece igual aqui...)
+# Apenas certifique-se de que no loop de insert você usa o path $DATA_DIR
 
 # criando tabelas
 if [ -f "$TABLES_FILE" ]; then

@@ -18,59 +18,63 @@
 # This program is released under license GNU GPL v3+ license.
 #
 #========================================================================
+version: '3.8'
+
 services:
+  # 1. O Banco de Dados (Imagem Oficial Pura)
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    user: root  # <--- ADICIONE ESTA LINHA AQUI
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./dbdata:/home/dynamodblocal/data
+    networks:
+      - dynamo-net
 
-    dynamodb-local:
-        build: .
-        container_name: dynamodb-local
-        working_dir: /home/dynamodblocal
-        environment:
-            AWS_ACCESS_KEY_ID: local
-            AWS_SECRET_ACCESS_KEY: local
-            AWS_DEFAULT_REGION: "us-west-2"
-            AWS_PAGER: ""
-            AWS_ENDPOINT_URL_DYNAMODB: "http://localhost:8000"
-        volumes:
-            - ./dbdata:/home/dynamodblocal/data
-        ports:
-            - "8000:8000"
-        command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
-        networks:
-            - dynamo-net
+  # 2. O Inicializador (Roda uma vez e morre)
+  dynamodb-init:
+    build: ./init
+    container_name: dynamodb-init
+    depends_on:
+      - dynamodb-local
+    environment:
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+      AWS_DEFAULT_REGION: us-west-2
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
+    networks:
+      - dynamo-net
 
-    dynamodb-init:
-        build: .
-        container_name: dynamodb-init
-        depends_on:
-            - dynamodb-local
-        volumes:
-            - ./init:/init
-            - ./dbdata:/home/dynamodblocal/data 
-        environment:
-            AWS_ACCESS_KEY_ID: local
-            AWS_SECRET_ACCESS_KEY: local
-            AWS_DEFAULT_REGION: "us-west-2"
-            AWS_PAGER: ""
-        entrypoint: ["/init/init.sh"]
-        networks:
-            - dynamo-net
+  # 3. Interface Visual (Opcional, mas útil)
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
+    depends_on:
+      - dynamodb-local
+    networks:
+      - dynamo-net
 
-    dynamodb-admin:
-        image: aaronshaf/dynamodb-admin
-        container_name: dynamodb-admin
-        environment:
-            DYNAMO_ENDPOINT: "http://dynamodb-local:8000"
-            AWS_REGION: "us-west-2"
-            AWS_ACCESS_KEY_ID: local
-            AWS_SECRET_ACCESS_KEY: local
-        depends_on:
-            - dynamodb-local
-        ports:
-            - "8001:8001"
-        networks:
-            - dynamo-net
+  # 4. Sua Aplicação Python (Opcional: rodar via container)
+  app-client:
+    build: ./app
+    container_name: app-client
+    stdin_open: true
+    tty: true
+    environment:
+      DYNAMO_ENDPOINT: http://dynamodb-local:8000
+    depends_on:
+      - dynamodb-init
+    volumes:               # <--- ADICIONE ISSO
+      - ./app:/app         # <--- ADICIONE ISSO
+    networks:
+      - dynamo-net
 
 networks:
-    dynamo-net:
-        driver: bridge
-        
+  dynamo-net:
+    driver: bridge

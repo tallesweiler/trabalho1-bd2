@@ -18,18 +18,17 @@
 #
 #========================================================================
 
-FROM amazon/dynamodb-local:latest
+FROM amazon/aws-cli:latest
 
-USER root
+# Instala jq E dos2unix
+RUN yum install -y jq dos2unix
 
-RUN yum install -y unzip jq
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
+COPY init.sh /init.sh
+COPY data /data
 
-COPY init/ /init/
-RUN chmod +x /init/init.sh
+# Converte o arquivo de Windows para Unix e torna executável
+RUN dos2unix /init.sh && chmod +x /init.sh
 
-RUN mkdir -p /home/dynamodblocal/data && chmod 777 /home/dynamodblocal/data
+WORKDIR /
 
-WORKDIR /home/dynamodblocal
+ENTRYPOINT ["/bin/bash", "/init.sh"]
