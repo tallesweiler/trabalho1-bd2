@@ -154,5 +154,3 @@ Para validar a robustez e a segurança da solução, execute os seguintes cenár
 -----
 
 *Projeto desenvolvido para a disciplina de Bancos de Dados 2.*
-
-```
