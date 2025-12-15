@@ -66,10 +66,10 @@ O banco de dados é inicializado com os seguintes usuários para validação das
 
 | Usuário     | Senha  | Role   | Permissões                                 |
 |-------------|--------|--------|--------------------------------------------|
-| admin_user  | 123456 | admin  | read, insert, update, delete, manage_users |
-| writer_user | 123456 | writer | insert, update, delete                     |
-| reader_user | 123456 | reader | read                                       |
-| comum_user  | 123456 | none   |                                            |
+| admin  | 123 | admin  | read, insert, update, delete, manage_users |
+| writer | 123 | writer | insert, update, delete                     |
+| reader | 123 | reader | read                                       |
+| comum  | 123 | none   |                                            |
 
 ## 📖 Guia de Comandos (Sintaxe)
 
