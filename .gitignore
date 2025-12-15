@@ -1,0 +1,17 @@
+# Banco de dados local (O que você pediu)
+dbdata/
+
+# Arquivos temporários do Python (Compilados)
+__pycache__/
+*.py[cod]
+
+# Variáveis de ambiente e senhas (Segurança!)
+.env
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações de IDE (Opcional, mas recomendado)
+.vscode/
+.idea/
