@@ -69,7 +69,7 @@ O banco de dados é inicializado com os seguintes usuários para validação das
 | admin  | 123 | admin  | read, insert, update, delete, manage_users |
 | writer | 123 | writer | insert, update, delete                     |
 | reader | 123 | reader | read                                       |
-| comum  | 123 | none   |                                            |
+| comum  | 123 | NULL   |                                            |
 
 ## 📖 Guia de Comandos (Sintaxe)
 
@@ -77,7 +77,16 @@ A interface aceita comandos baseados na estrutura **JSON**.
 
 > **⚠️ IMPORTANTE:** O formato JSON é estrito. Utilize **aspas duplas** (`"`) para chaves e strings.
 
-### 1\. Listar Itens (Scan)
+### 1\. Listar Tabelas (List Tables)
+
+Lista todas as tabelas do banco de dados.
+*Permissão Necessária: READ*
+
+```bash
+list-tables
+```
+
+### 2\. Listar Itens (Scan)
 
 Varre a tabela inteira e lista os itens.
 *Permissão Necessária: READ*
@@ -88,7 +97,7 @@ scan <tabela>
 scan users
 ```
 
-### 2\. Buscar Item Único (GetItem)
+### 3\. Buscar Item Único (GetItem)
 
 Busca um item específico pela sua Chave Primária.
 *Permissão Necessária: READ*
@@ -99,10 +108,10 @@ get-item <tabela> <json_chave_primaria>
 get-item users {"username": "admin_user"}
 ```
 
-### 3\. Inserir ou Atualizar Item (PutItem)
+### 4\. Inserir Item (PutItem)
 
 Insere um novo item ou substitui um existente.
-*Permissão Necessária: INSERT ou UPDATE*
+*Permissão Necessária: INSERT*
 
 ```bash
 put-item <tabela> <json_do_item>
@@ -110,7 +119,18 @@ put-item <tabela> <json_do_item>
 put-item products {"id": "101", "nome": "Teclado", "preco": 150}
 ```
 
-### 4\. Deletar Item (DeleteItem)
+### 5\. Atualizar Item (UpdateItem)
+
+Substitui um item existente.
+*Permissão Necessária: UPDATE*
+
+```bash
+update-item <tabela> <json_do_item>
+# Exemplo:
+update-item products {"id": "101", "preco": 120}
+```
+
+### 6\. Deletar Item (DeleteItem)
 
 Remove um item do banco.
 *Permissão Necessária: DELETE*
@@ -121,7 +141,15 @@ delete-item <tabela> <json_chave_primaria>
 delete-item products {"id": "101"}
 ```
 
-### 5\. Sair
+### 7\. Ajuda (Help)
+
+Lista todos os comandos disponiveis para uso
+
+```bash
+help
+```
+
+### 8\. Sair
 
 Encerra a aplicação.
 
@@ -135,9 +163,9 @@ Para validar a robustez e a segurança da solução, execute os seguintes cenár
 
 1.  **Cenário de Bloqueio (Autorização Negada)**
 
-      * Faça login com `guest_user`.
+      * Faça login com `comum_user`.
       * Tente executar um comando de escrita: `delete-item users {"username": "admin_user"}`.
-      * **Resultado:** O sistema deve exibir `🚫 ERRO` informando que a Role GUEST não possui permissão `DELETE`.
+      * **Resultado:** O sistema deve exibir `🚫 ERRO` informando que o user COMUM não possui permissão `DELETE`.
 
 2.  **Cenário de Sucesso (Autorização Concedida)**
 
